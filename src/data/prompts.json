@@ -195,7 +195,12 @@
       "title": "CES 유튜브 영상 요약/분석-Youtube Summarizer",
       "prompts": [],
       "attachments": [
-        "실습 영상 : CES 젠슨황 발표 영상"
+        "실습 영상 : CES 젠슨황 발표 영상",
+        {
+          "type": "url",
+          "text": "실습 영상 : CES 젠슨황 발표 영상",
+          "url": "https://www.youtube.com/watch?v=k82RwXqZHY8"
+        }
       ],
       "tools": [
         "Youtube Summarizer"
