@@ -435,7 +435,7 @@ function App() {
               <a href="https://suno.ai" target="_blank" rel="noopener noreferrer">Suno AI</a>
               <a href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer">Perplexity</a>
               <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">Claude</a>
-              <a href="https://chromewebstore.google.com/detail/touch-vpn-secure-and-unli/bihmplhobchoageeokmgbdihknkjbknd/reviews?hl=en-US" target="_blank" rel="noopener noreferrer">TouchVPN</a>
+              <a href="https://chromewebstore.google.com/detail/bnlofglpdlboacepdieejiecfbfpmhlb?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">TurboVPN</a>
             </div>
           </div>
 
@@ -451,7 +451,7 @@ function App() {
             </div>
 
             <div className="auth-center">
-              <a href="https://drive.google.com/file/d/1BiyQciHJC5lkZzbjcGfKfIWqwfQA6w-T/view?usp=sharing" 
+              <a href="https://drive.google.com/file/d/1ks2q9BZoDByhJcFlnl-C1yJdAJxkTtfH/view?usp=sharing" 
                  target="_blank" 
                  rel="noopener noreferrer">
                 실습파일 다운로드
