@@ -454,7 +454,7 @@ function App() {
             </div>
 
             <div className="auth-center">
-              <a href="https://drive.google.com/file/d/1ks2q9BZoDByhJcFlnl-C1yJdAJxkTtfH/view?usp=sharing" 
+              <a href="https://drive.google.com/file/d/17THNXT9DI56mQBou8oNYxhfuC7OpuOIb/view?usp=sharing" 
                  target="_blank" 
                  rel="noopener noreferrer">
                 실습파일 다운로드
