@@ -181,6 +181,8 @@ function App() {
     'NoteBookLM': 'https://notebooklm.google.com/',
     'Youtube Summarizer': 'https://chromewebstore.google.com/detail/youtube-summary-with-chat/nmmicjeknamkfloonkhhcjmomieiodli?hl=ko',
     'Ideogram': 'https://ideogram.ai',
+    'GoogleFX': 'https://labs.google/fx/',
+    'LilysAI': 'https://lilys.ai'
   };
 
   const getToolButtonsForSlide = (slide) => {
@@ -436,6 +438,7 @@ function App() {
               <a href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer">Perplexity</a>
               <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">Claude</a>
               <a href="https://chromewebstore.google.com/detail/bnlofglpdlboacepdieejiecfbfpmhlb?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">TurboVPN</a>
+              <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NoteBookLM</a>
             </div>
           </div>
 
