@@ -182,7 +182,8 @@ function App() {
     'Youtube Summarizer': 'https://chromewebstore.google.com/detail/youtube-summary-with-chat/nmmicjeknamkfloonkhhcjmomieiodli?hl=ko',
     'Ideogram': 'https://ideogram.ai',
     'GoogleFX': 'https://labs.google/fx/',
-    'LilysAI': 'https://lilys.ai'
+    'LilysAI': 'https://lilys.ai',
+    'Genspark': 'https://www.genspark.ai/'
   };
 
   const getToolButtonsForSlide = (slide) => {
@@ -293,6 +294,48 @@ function App() {
 
   const scrollToAttachments = () => {
     document.querySelector('.attachments')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // 첨부 파일 경로를 파싱하고 시각화하는 함수
+  const renderAttachmentPath = (attachmentText) => {
+    if (typeof attachmentText !== 'string' || !attachmentText.includes(' > ')) {
+      return <span className="attachment-simple">{attachmentText}</span>;
+    }
+
+    const pathParts = attachmentText.split(' > ');
+    const folders = pathParts.slice(0, -1);
+    const filename = pathParts[pathParts.length - 1];
+
+    return (
+      <div className="attachment-path">
+        <div className="folder-path">
+          {folders.map((folder, index) => (
+            <React.Fragment key={index}>
+              <div className="folder-box">
+                <span className="folder-icon">📁</span>
+                <span className="folder-name">{folder}</span>
+              </div>
+              {index < folders.length - 1 && (
+                <div className="path-separator">
+                  <svg viewBox="0 0 24 24" className="separator-icon">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/>
+                  </svg>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+        <div className="final-separator">
+          <svg viewBox="0 0 24 24" className="separator-icon">
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div className="filename-box">
+          <span className="file-icon">📄</span>
+          <span className="filename">{filename}</span>
+        </div>
+      </div>
+    );
   };
 
   // Add restart tutorial function
@@ -439,6 +482,7 @@ function App() {
               <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">Claude</a>
               <a href="https://chromewebstore.google.com/detail/bnlofglpdlboacepdieejiecfbfpmhlb?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">TurboVPN</a>
               <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer">NoteBookLM</a>
+              <a href="https://www.genspark.ai/" target="_blank" rel="noopener noreferrer">Genspark</a>
             </div>
           </div>
 
@@ -453,13 +497,13 @@ function App() {
               </a>
             </div>
 
-            <div className="auth-center">
+            {/* <div className="auth-center">
               <a href="https://drive.google.com/file/d/17THNXT9DI56mQBou8oNYxhfuC7OpuOIb/view?usp=sharing" 
                  target="_blank" 
                  rel="noopener noreferrer">
                 실습파일 다운로드
               </a>
-            </div>
+            </div> */}
 
             {renderSlideList()}
           </ul>
@@ -573,7 +617,7 @@ function App() {
                             setShowAuthCenter(false);
                           }}
                         >
-                          {group === "표지" ? "" : `${groupIndex + 1}-${slides.findIndex(s => s.index === index) + 1}`}
+                          {`${slides.findIndex(s => s.index === index) + 1}`}
                         </button>
                       ))}
                     </div>
@@ -624,31 +668,38 @@ function App() {
 
                   {prompts.slides[currentSlide]?.attachments && (
                     <div className="attachments">
-                      <strong>첨부 파일:</strong><br />
-                      {prompts.slides[currentSlide].attachments.map((attachment, index) => (
-                        <div key={index}>
-                          {typeof attachment === 'string' ? (
-                            // Legacy string attachments
-                            attachment
-                          ) : attachment.type === 'url' ? (
-                            // URL type attachments
-                            <div>
-                              {attachment.text}{' '}
-                              <a 
-                                href={attachment.url} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="text-blue-500 hover:text-blue-700 underline"
-                              >
-                                바로가기
-                              </a>
-                            </div>
-                          ) : (
-                            // Default case for other types
-                            attachment.text || JSON.stringify(attachment)
-                          )}
-                        </div>
-                      ))}
+                      <div className="attachments-header">
+                        <span className="attachments-icon">📎</span>
+                        <strong>첨부 파일</strong>
+                      </div>
+                      <div className="attachments-content">
+                        {prompts.slides[currentSlide].attachments.map((attachment, index) => (
+                          <div key={index} className="attachment-item">
+                            {typeof attachment === 'string' ? (
+                              // Legacy string attachments with path rendering
+                              renderAttachmentPath(attachment)
+                            ) : attachment.type === 'url' ? (
+                              // URL type attachments
+                              <div className="attachment-url">
+                                <span className="attachment-simple">{attachment.text}</span>
+                                <a 
+                                  href={attachment.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="url-link"
+                                >
+                                  바로가기
+                                </a>
+                              </div>
+                            ) : (
+                              // Default case for other types
+                              <span className="attachment-simple">
+                                {attachment.text || JSON.stringify(attachment)}
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
 
